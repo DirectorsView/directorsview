@@ -10,8 +10,4 @@ public class Account extends PanacheEntityBase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-
-    LocalDate[] datesUsed;
-
-    String name;
 }
