@@ -1,34 +1,24 @@
 package at.htl.entity;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
-import org.w3c.dom.stylesheets.LinkStyle;
-
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-//@Inheritance(strategy = InheritanceType.JOINED)
-public class Company extends PanacheEntityBase {
-    @Column
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "DV_COM")
+public class Company extends Account {
+    @Column(name = "COM_NAME")
     private String name;
 
-    @JoinColumn
+    @JoinColumn(name = "COM_PROJECTS")
     @OneToMany
     private List<Project> projects;
 
-    @JoinColumn
+    @JoinColumn(name = "COM_INVENTORY")
     @OneToMany
     private List<Gear> inventory;
-    @Id
-    private Long id;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
+    //private List<Vacancy> vacancies;
 
     public Company() {
     }
@@ -37,5 +27,38 @@ public class Company extends PanacheEntityBase {
         this.name = name;
         this.projects = projects;
         this.inventory = inventory;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
+    }
+
+    public List<Gear> getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(List<Gear> inventory) {
+        this.inventory = inventory;
+    }
+
+    @Override
+    public String toString() {
+        return "Company{" +
+                "name='" + name + '\'' +
+                ", projects=" + projects +
+                ", inventory=" + inventory +
+                '}';
     }
 }
