@@ -8,18 +8,20 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
+@Table(name = "DV_PRO")
 public class Project extends PanacheEntityBase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "PRO_ID")
     private Long id;
 
-    @Column
+    @Column(name = "PRO_STARTTIME")
     LocalDate startTime;
 
-    @Column
+    @Column(name = "PRO_ENDTIME")
     LocalDate endTime;
 
-    @JoinColumn
+    @JoinColumn(name = "PRO_EMPLOYEES")
     @OneToMany
     private List<Person> employees;
 
