@@ -23,13 +23,16 @@ public class Company extends Account {
 
     //private List<Vacancy> vacancies;
 
+    @JoinColumn(name = "COM_EMPLOYEES")
+    @OneToMany
+    private List<Person> employees;
+
     public Company() {
     }
 
-    public Company(String name, String address, List<Project> projects, List<Gear> inventory) {
+    public Company(String name, String address, List<Gear> inventory) {
         this.name = name;
         this.address = address;
-        this.projects = projects;
         this.inventory = inventory;
     }
 
@@ -63,6 +66,14 @@ public class Company extends Account {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public List<Person> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Person> employees) {
+        this.employees = employees;
     }
 
     @Override
