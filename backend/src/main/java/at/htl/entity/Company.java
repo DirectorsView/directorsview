@@ -79,7 +79,10 @@ public class Company extends Account {
     public String toString() {
         return "Company{" +
                 "name='" + name + '\'' +
+                ", address='" + address + '\'' +
                 ", projects=" + projects +
+                ", employees=" + employees +
+                ", admins=" + admins +
                 '}';
     }
 }
