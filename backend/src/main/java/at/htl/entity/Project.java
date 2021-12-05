@@ -89,4 +89,16 @@ public class Project extends PanacheEntityBase {
     public String getDescription() {
         return description;
     }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", employees=" + employees +
+                '}';
+    }
 }
