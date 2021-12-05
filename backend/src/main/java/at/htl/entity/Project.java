@@ -18,6 +18,9 @@ public class Project extends PanacheEntityBase {
     @Column(name = "PRO_NAME")
     private String name;
 
+    @Column(name = "PRO_DECRIPTION")
+    private String description;
+
     @Column(name = "PRO_STARTTIME")
     LocalDate startTime;
 
@@ -31,7 +34,9 @@ public class Project extends PanacheEntityBase {
     public Project() {
     }
 
-    public Project(LocalDate startTime, LocalDate endTime, List<Person> employees) {
+    public Project(String name, String description, LocalDate startTime, LocalDate endTime, List<Person> employees) {
+        this.name = name;
+        this.description = description;
         this.startTime = startTime;
         this.endTime = endTime;
         this.employees = employees;
@@ -75,5 +80,13 @@ public class Project extends PanacheEntityBase {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }
