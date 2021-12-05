@@ -10,6 +10,9 @@ public class Company extends Account {
     @Column(name = "COM_NAME")
     private String name;
 
+    @Column(name = "COM_ADRESS")
+    private String adress;
+
     @JoinColumn(name = "COM_PROJECTS")
     @OneToMany
     private List<Project> projects;
@@ -23,8 +26,9 @@ public class Company extends Account {
     public Company() {
     }
 
-    public Company(String name, List<Project> projects, List<Gear> inventory) {
+    public Company(String name, String adress, List<Project> projects, List<Gear> inventory) {
         this.name = name;
+        this.adress = adress;
         this.projects = projects;
         this.inventory = inventory;
     }
@@ -51,6 +55,14 @@ public class Company extends Account {
 
     public void setInventory(List<Gear> inventory) {
         this.inventory = inventory;
+    }
+
+    public String getAdress() {
+        return adress;
+    }
+
+    public void setAdress(String adress) {
+        this.adress = adress;
     }
 
     @Override
