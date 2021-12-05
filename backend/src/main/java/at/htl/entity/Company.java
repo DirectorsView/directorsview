@@ -17,10 +17,6 @@ public class Company extends Account {
     @OneToMany
     private List<Project> projects;
 
-    @JoinColumn(name = "COM_INVENTORY")
-    @OneToMany
-    private List<Gear> inventory;
-
     //private List<Vacancy> vacancies;
 
     @JoinColumn(name = "COM_EMPLOYEES")
@@ -30,10 +26,9 @@ public class Company extends Account {
     public Company() {
     }
 
-    public Company(String name, String address, List<Gear> inventory) {
+    public Company(String name, String address) {
         this.name = name;
         this.address = address;
-        this.inventory = inventory;
     }
 
     public String getName() {
@@ -50,14 +45,6 @@ public class Company extends Account {
 
     public void setProjects(List<Project> projects) {
         this.projects = projects;
-    }
-
-    public List<Gear> getInventory() {
-        return inventory;
-    }
-
-    public void setInventory(List<Gear> inventory) {
-        this.inventory = inventory;
     }
 
     public String getAddress() {
@@ -81,7 +68,6 @@ public class Company extends Account {
         return "Company{" +
                 "name='" + name + '\'' +
                 ", projects=" + projects +
-                ", inventory=" + inventory +
                 '}';
     }
 }
