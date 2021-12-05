@@ -21,15 +21,15 @@ public class Project extends PanacheEntityBase {
 
     @JoinColumn
     @OneToMany
-    private List<Person> employee;
+    private List<Person> employees;
 
     public Project() {
     }
 
-    public Project(LocalDate startTime, LocalDate endTime, List<Person> employee) {
+    public Project(LocalDate startTime, LocalDate endTime, List<Person> employees) {
         this.startTime = startTime;
         this.endTime = endTime;
-        this.employee = employee;
+        this.employees = employees;
     }
 
     public Long getId() {
@@ -56,11 +56,11 @@ public class Project extends PanacheEntityBase {
         this.endTime = endTime;
     }
 
-    public List<Person> getEmployee() {
-        return employee;
+    public List<Person> getEmployees() {
+        return employees;
     }
 
-    public void setEmployee(List<Person> employee) {
-        this.employee = employee;
+    public void setEmployees(List<Person> employees) {
+        this.employees = employees;
     }
 }
