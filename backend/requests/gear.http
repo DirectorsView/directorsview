@@ -3,8 +3,8 @@ Content-Type: application/json
 
 {
   "title": "Kamera",
-  "timeRange": {
-    "startTime": "2021-06-03",
-    "endTime": "2021-06-04"
-  }
+  "datesUsed": [
+      "2021-06-03",
+      "2021-06-04"
+  ]
 }
