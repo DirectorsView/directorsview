@@ -4,7 +4,6 @@ import at.htl.control.CompanyRepository;
 import at.htl.entity.Company;
 
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
@@ -23,8 +22,6 @@ public class CompanyService {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Company post(Company company) {
-        //repository.save(company);
-
-        return company;
+        return repository.save(company);
     }
 }
