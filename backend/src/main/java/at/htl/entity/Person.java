@@ -33,6 +33,13 @@ public class Person extends Account {
         this.birthdate = birthdate;
     }
 
+    public Person(String password, String email, String website, String firstName, String lastName, LocalDate birthdate) {
+        super(password, email, website);
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthdate = birthdate;
+    }
+
     public String getFirstName() {
         return firstName;
     }
