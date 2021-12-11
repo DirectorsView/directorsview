@@ -35,6 +35,23 @@ public class Company extends Account {
         this.address = address;
     }
 
+    public Company(String name, String address, List<Project> projects, List<Person> employees, List<Person> admins) {
+        this.name = name;
+        this.address = address;
+        this.projects = projects;
+        this.employees = employees;
+        this.admins = admins;
+    }
+
+    public Company(String password, String email, String website, String name, String address, List<Project> projects, List<Person> employees, List<Person> admins) {
+        super(password, email, website);
+        this.name = name;
+        this.address = address;
+        this.projects = projects;
+        this.employees = employees;
+        this.admins = admins;
+    }
+
     public String getName() {
         return name;
     }
