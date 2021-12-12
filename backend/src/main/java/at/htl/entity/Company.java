@@ -86,8 +86,6 @@ public class Company extends Account {
         return "Company{" +
                 "name='" + name + '\'' +
                 ", address='" + address + '\'' +
-                //", employees=" + employees +
-                //", admins=" + admins +
                 '}';
     }
 }

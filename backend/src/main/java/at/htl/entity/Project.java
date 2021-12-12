@@ -38,12 +38,13 @@ public class Project extends PanacheEntityBase {
     public Project() {
     }
 
-    public Project(String name, String description, LocalDate startTime, LocalDate endTime, List<Person> employees) {
+    public Project(Long id, String name, String description, LocalDate startTime, LocalDate endTime, Company company) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.startTime = startTime;
         this.endTime = endTime;
-        //this.employees = employees;
+        this.company = company;
     }
 
     public Long getId() {
@@ -94,6 +95,14 @@ public class Project extends PanacheEntityBase {
         return description;
     }
 
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
     @Override
     public String toString() {
         return "Project{" +
@@ -102,7 +111,7 @@ public class Project extends PanacheEntityBase {
                 ", description='" + description + '\'' +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
-                //", employees=" + employees +
+                ", company=" + company +
                 '}';
     }
 }
