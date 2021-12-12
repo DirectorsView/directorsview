@@ -7,7 +7,6 @@ Content-Type: application/json
   "website": "infilmity.at",
   "name": "Infilmity",
   "address": "Limesstraße 12-14",
-  "projects": null,
   "employees": null,
   "admins": null
 }
