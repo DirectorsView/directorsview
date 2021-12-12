@@ -17,8 +17,6 @@ public class Company extends Account {
     @Column(name = "COM_ADDRESS")
     private String address;
 
-    //private List<Vacancy> vacancies;
-
     /*@JoinColumn(name = "COM_EMPLOYEES")
     @OneToMany
     private List<Person> employees;
@@ -35,7 +33,7 @@ public class Company extends Account {
         this.address = address;
     }
 
-    public Company(String name, String address, List<Project> projects, List<Person> employees, List<Person> admins) {
+    public Company(String name, String address, List<Person> employees, List<Person> admins) {
         this.name = name;
         this.address = address;
         //this.projects = projects;
