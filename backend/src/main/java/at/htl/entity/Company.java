@@ -3,9 +3,9 @@ package at.htl.entity;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
+
+@Entity(name = "DV_COM")
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "DV_COM")
 public class Company extends Account {
     @Column(name = "COM_NAME")
     private String name;
