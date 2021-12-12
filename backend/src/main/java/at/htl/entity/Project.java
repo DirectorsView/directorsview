@@ -27,9 +27,13 @@ public class Project extends PanacheEntityBase {
     @Column(name = "PRO_ENDTIME")
     LocalDate endTime;
 
-    @JoinColumn(name = "PRO_EMPLOYEES")
+    /*@JoinColumn(name = "PRO_EMPLOYEES")
     @OneToMany
-    private List<Person> employees;
+    private List<Person> employees;*/
+
+    @ManyToOne
+    @JoinColumn(name = "PRO_COMPANY")
+    private Company company;
 
     public Project() {
     }
@@ -39,7 +43,7 @@ public class Project extends PanacheEntityBase {
         this.description = description;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.employees = employees;
+        //this.employees = employees;
     }
 
     public Long getId() {
@@ -66,13 +70,13 @@ public class Project extends PanacheEntityBase {
         this.endTime = endTime;
     }
 
-    public List<Person> getEmployees() {
+    /*public List<Person> getEmployees() {
         return employees;
     }
 
     public void setEmployees(List<Person> employees) {
         this.employees = employees;
-    }
+    }*/
 
     public String getName() {
         return name;
@@ -98,7 +102,7 @@ public class Project extends PanacheEntityBase {
                 ", description='" + description + '\'' +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
-                ", employees=" + employees +
+                //", employees=" + employees +
                 '}';
     }
 }
