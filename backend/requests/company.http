@@ -2,9 +2,15 @@ POST http://localhost:8080/company
 Content-Type: application/json
 
 {
-  "name": "Infilmity"
+  "password": "12345",
+  "email": "office@infilmity.at",
+  "website": "infilmity.at",
+  "name": "Infilmity",
+  "address": "Limesstraße 12-14",
+  "projects": null,
+  "employees": null,
+  "admins": null
 }
-
 ###
 
 GET http://localhost:8080/company
