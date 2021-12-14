@@ -1,7 +1,5 @@
 package at.htl.entity;
 
-import net.bytebuddy.asm.Advice;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -19,12 +17,6 @@ public class Person extends Account {
     private LocalDate birthdate;
 
     public Person() {
-    }
-
-    public Person(String firstName, String lastName, LocalDate birthdate) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthdate = birthdate;
     }
 
     public Person(String password, String email, String website, String firstName, String lastName, LocalDate birthdate) {
