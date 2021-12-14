@@ -17,3 +17,11 @@ GET http://localhost:8080/project
 ###
 
 GET http://localhost:8080/project/1
+
+###
+
+GET http://localhost:8080/project/1/members
+
+###
+
+POST http://localhost:8080/project/1/members?personId=1
