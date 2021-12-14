@@ -18,26 +18,20 @@ public class Person extends Account {
     @Column(name = "PER_BIRTHDATE")
     private LocalDate birthdate;
 
-    @ManyToOne
-    @JoinColumn(name = "PER_COMPANY")
-    private Company company;
-
     public Person() {
     }
 
-    public Person(String firstName, String lastName, LocalDate birthdate, Company company) {
+    public Person(String firstName, String lastName, LocalDate birthdate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthdate = birthdate;
-        this.company = company;
     }
 
-    public Person(String password, String email, String website, String firstName, String lastName, LocalDate birthdate, Company company) {
+    public Person(String password, String email, String website, String firstName, String lastName, LocalDate birthdate) {
         super(password, email, website);
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthdate = birthdate;
-        this.company = company;
     }
 
     public String getFirstName() {
@@ -64,21 +58,12 @@ public class Person extends Account {
         this.birthdate = birthdate;
     }
 
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
-    }
-
     @Override
     public String toString() {
         return "Person{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", birthdate=" + birthdate +
-                ", company=" + company +
                 '}';
     }
 }
