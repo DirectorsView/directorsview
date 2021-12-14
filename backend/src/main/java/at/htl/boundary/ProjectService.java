@@ -27,4 +27,10 @@ public class ProjectService {
     public Project post(Project project) {
         return projectRepository.save(project);
     }
+
+    @GET
+    @Path("{id}")
+    public Project getOne(@PathParam("id") Long id) {
+        return projectRepository.findById(id);
+    }
 }
