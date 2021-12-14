@@ -1,4 +1,12 @@
 package at.htl.control;
 
-public class ProjectMemberRepository {
+import at.htl.entity.ProjectMember;
+import io.quarkus.hibernate.orm.panache.PanacheRepository;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.transaction.Transactional;
+
+@Transactional
+@ApplicationScoped
+public class ProjectMemberRepository implements PanacheRepository<ProjectMember> {
 }
