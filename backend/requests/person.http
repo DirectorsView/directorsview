@@ -1,0 +1,19 @@
+POST http://localhost:8080/person
+Content-Type: application/json
+
+{
+  "email": "string",
+  "password": "string",
+  "website": "string",
+  "birthdate": "2021-12-14",
+  "firstName": "string",
+  "lastName": "string"
+}
+
+###
+
+GET http://localhost:8080/person
+
+###
+
+GET http://localhost:8080/person/1
