@@ -1,4 +1,18 @@
 package at.htl.entity;
 
-public class Employee {
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+
+public class Employee extends PanacheEntityBase {
+
+    private Long id;
+
+    private Person person;
+
+    private Company company;
+
+    private Boolean isAdmin;
 }
