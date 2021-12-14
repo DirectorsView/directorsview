@@ -11,3 +11,7 @@ Content-Type: application/json
 ###
 
 GET http://localhost:8080/company
+
+###
+
+GET http://localhost:8080/company/1
