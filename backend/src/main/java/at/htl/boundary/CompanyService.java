@@ -26,28 +26,24 @@ public class CompanyService {
     PersonRepository personRepository;
 
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
     public List<Company> getAll() {
         return companyRepository.listAll();
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
     public Company post(Company company) {
         return companyRepository.save(company);
     }
 
     @GET
     @Path("{id}")
-    @Produces(MediaType.APPLICATION_JSON)
     public Company getOne(@PathParam("id") Long id) {
         return companyRepository.findById(id);
     }
 
     @GET
     @Path("{id}/employees")
-    @Produces(MediaType.APPLICATION_JSON)
     public List<Person> getEmployees(@PathParam("id") Long id) {
         return employeeRepository.find("company.id", id).stream()
                 .map(Employee::getPerson)
@@ -56,7 +52,6 @@ public class CompanyService {
 
     @POST
     @Path("{id}/employees")
-    @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Person addEmployee(@PathParam("id") Long companyId,
                               @QueryParam("personId") Long personId,
