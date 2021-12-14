@@ -1,0 +1,19 @@
+POST http://localhost:8080/project
+Content-Type: application/json
+
+{
+  "company": {
+    "id": 1
+  },
+  "description": "string",
+  "endTime": "2021-12-14",
+  "name": "string",
+  "startTime": "2021-12-14"
+}
+###
+
+GET http://localhost:8080/project
+
+###
+
+GET http://localhost:8080/project/1
