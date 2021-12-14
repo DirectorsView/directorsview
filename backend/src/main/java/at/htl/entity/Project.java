@@ -3,9 +3,7 @@ package at.htl.entity;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 import javax.persistence.*;
-import javax.validation.Constraint;
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Table(name = "DV_PRO")
@@ -26,10 +24,6 @@ public class Project extends PanacheEntityBase {
 
     @Column(name = "PRO_ENDTIME")
     LocalDate endTime;
-
-    /*@JoinColumn(name = "PRO_EMPLOYEES")
-    @OneToMany
-    private List<Person> employees;*/
 
     @ManyToOne
     @JoinColumn(name = "PRO_COMPANY")
