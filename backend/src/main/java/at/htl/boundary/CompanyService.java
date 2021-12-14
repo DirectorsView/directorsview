@@ -1,37 +1,71 @@
 package at.htl.boundary;
 
 import at.htl.control.CompanyRepository;
+import at.htl.control.EmployeeRepository;
+import at.htl.control.PersonRepository;
 import at.htl.entity.Company;
+import at.htl.entity.Employee;
+import at.htl.entity.Person;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Path("/company")
 @Produces(MediaType.APPLICATION_JSON)
 public class CompanyService {
     @Inject
-    CompanyRepository repository;
+    CompanyRepository companyRepository;
+
+    @Inject
+    EmployeeRepository employeeRepository;
+
+    @Inject
+    PersonRepository personRepository;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Company> getAll() {
-        return repository.listAll();
+        return companyRepository.listAll();
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Company post(Company company) {
-        return repository.save(company);
+        return companyRepository.save(company);
     }
 
     @GET
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Company getOne(@PathParam("id") Long id) {
-        return repository.findById(id);
+        return companyRepository.findById(id);
     }
 
+    @GET
+    @Path("{id}/employees")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Person> getEmployees(@PathParam("id") Long id) {
+        return employeeRepository.find("company.id", id).stream()
+                .map(Employee::getPerson)
+                .collect(Collectors.toList());
+    }
+
+    @POST
+    @Path("{id}/employees")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Person addEmployee(@PathParam("id") Long companyId,
+                              @QueryParam("personId") Long personId,
+                              @QueryParam("isAdmin") Boolean isAdmin) {
+
+        Company company = companyRepository.findById(companyId);
+        Person person = personRepository.findById(personId);
+        employeeRepository.save(new Employee(null, person, company, isAdmin));
+
+        return person;
+    }
 }

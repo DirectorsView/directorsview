@@ -11,7 +11,7 @@ import javax.transaction.Transactional;
 @ApplicationScoped
 public class EmployeeRepository implements PanacheRepository<Employee> {
 
-    public Company save(Company company) {
-        return getEntityManager().merge(company);
+    public Employee save(Employee employee) {
+        return getEntityManager().merge(employee);
     }
 }
