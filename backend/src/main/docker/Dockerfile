@@ -7,7 +7,7 @@
 #
 # Then, build the image with:
 #
-# docker build -f src/main/docker/Dockerfile.native -t quarkus/directorsview .
+# docker build -f src/main/docker/Dockerfile -t quarkus/directorsview .
 #
 # Then run the container using:
 #
