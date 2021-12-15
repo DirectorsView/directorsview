@@ -25,10 +25,8 @@ jobs:
         uses: skjolber/maven-cache-github-action@v1.1
         with:
           step: save
-      - name: LS
-        run: ls && pwd
       - name: Deploy to server
-        uses: easingthemes/ssh-deploy@v2.1.6
+        uses: easingthemes/ssh-deploy@v2.2.11
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SOURCE: backend/
