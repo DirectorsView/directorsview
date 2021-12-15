@@ -15,6 +15,7 @@ jobs:
       - name: Package
         run: |
           cd backend
+          chmod +x mvnw
           ./mvnw package -Pnative -DskipTests
       - name: Deploy to server
         uses: easingthemes/ssh-deploy@v2.2.11
