@@ -12,25 +12,24 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - name: Restore Maven cache
-        uses: skjolber/maven-cache-github-action@v1.1
-        with:
-          step: restore
-      - name: Package
-        run: |
-          cd backend
-          chmod +x mvnw
-          ./mvnw package -Pnative -DskipTests
-      - name: Save Maven cache
-        uses: skjolber/maven-cache-github-action@v1.1
-        with:
-          step: save
+      # - name: Restore Maven cache
+      #   uses: skjolber/maven-cache-github-action@v1.1
+      #   with:
+      #     step: restore
+      # - name: Package
+      #   run: |
+      #     cd backend
+      #     chmod +x mvnw
+      #     ./mvnw package -Pnative -DskipTests
+      # - name: Save Maven cache
+      #   uses: skjolber/maven-cache-github-action@v1.1
+      #   with:
+      #     step: save
       - name: Deploy to server
         uses: easingthemes/ssh-deploy@v2.1.6
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SOURCE: backend/
-          ARGS: "-rltgoDzvvO"
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.REMOTE_TARGET }}
