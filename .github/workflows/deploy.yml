@@ -19,8 +19,7 @@ jobs:
       - name: Package
         run: |
           cd backend
-          chmod +x mvnw
-          ./mvnw package -Pnative -DskipTests
+          ./mvnw package -DskipTests
       - name: Save Maven cache
         uses: skjolber/maven-cache-github-action@v1.1
         with:
