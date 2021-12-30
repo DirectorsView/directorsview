@@ -42,4 +42,52 @@ public class Vacancy extends PanacheEntityBase {
         this.company = company;
         this.project = project;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public LocalDate getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(LocalDate deadline) {
+        this.deadline = deadline;
+    }
+
+    public Boolean getOpened() {
+        return opened;
+    }
+
+    public void setOpened(Boolean opened) {
+        this.opened = opened;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
 }
