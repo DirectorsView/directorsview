@@ -30,4 +30,16 @@ public class Vacancy extends PanacheEntityBase {
     @ManyToOne
     @JoinColumn(name = "VAC_PROJECT")
     private Project project;
+
+    public Vacancy() {
+    }
+
+    public Vacancy(Long id, String title, LocalDate deadline, Boolean opened, Company company, Project project) {
+        this.id = id;
+        this.title = title;
+        this.deadline = deadline;
+        this.opened = opened;
+        this.company = company;
+        this.project = project;
+    }
 }
