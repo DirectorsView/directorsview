@@ -90,4 +90,16 @@ public class Vacancy extends PanacheEntityBase {
     public void setProject(Project project) {
         this.project = project;
     }
+
+    @Override
+    public String toString() {
+        return "Vacancy{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", deadline=" + deadline +
+                ", opened=" + opened +
+                ", company=" + company +
+                ", project=" + project +
+                '}';
+    }
 }
