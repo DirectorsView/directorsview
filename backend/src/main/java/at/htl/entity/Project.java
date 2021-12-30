@@ -65,14 +65,6 @@ public class Project extends PanacheEntityBase {
         this.endTime = endTime;
     }
 
-    /*public List<Person> getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(List<Person> employees) {
-        this.employees = employees;
-    }*/
-
     public String getName() {
         return name;
     }
