@@ -53,4 +53,13 @@ public class Applicant extends PanacheEntityBase {
     public void setPerson(Person person) {
         this.person = person;
     }
+
+    @Override
+    public String toString() {
+        return "Applicant{" +
+                "id=" + id +
+                ", vacancy=" + vacancy +
+                ", person=" + person +
+                '}';
+    }
 }
