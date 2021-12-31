@@ -1,14 +1,15 @@
 package at.htl.boundary;
 
 import at.htl.control.ApplicantRepository;
+import at.htl.control.PersonRepository;
 import at.htl.control.VacancyRepository;
-import at.htl.entity.Project;
-import at.htl.entity.Vacancy;
+import at.htl.entity.*;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Path("/vacancy")
 @Produces(MediaType.APPLICATION_JSON)
@@ -19,6 +20,9 @@ public class VacancyService {
 
     @Inject
     ApplicantRepository applicantRepository;
+
+    @Inject
+    PersonRepository personRepository;
 
     @GET
     public List<Vacancy> getAll() {
@@ -35,5 +39,13 @@ public class VacancyService {
     @Path("{id}")
     public Vacancy getOne(@PathParam("id") Long id) {
         return vacancyRepository.findById(id);
+    }
+
+    @GET
+    @Path("{id}/applicants")
+    public List<Person> getApplicants(@PathParam("id") Long id) {
+        return applicantRepository.find("vacancy.id", id).stream()
+                .map(Applicant::getPerson)
+                .collect(Collectors.toList());
     }
 }
