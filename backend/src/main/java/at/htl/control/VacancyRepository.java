@@ -9,4 +9,7 @@ import javax.transaction.Transactional;
 @ApplicationScoped
 @Transactional
 public class VacancyRepository implements PanacheRepository<Vacancy> {
+    public Vacancy save(Vacancy vacancy) {
+        return getEntityManager().merge(vacancy);
+    }
 }
