@@ -30,4 +30,10 @@ public class VacancyService {
     public Vacancy post(Vacancy vacancy) {
         return vacancyRepository.save(vacancy);
     }
+
+    @GET
+    @Path("{id}")
+    public Vacancy getOne(@PathParam("id") Long id) {
+        return vacancyRepository.findById(id);
+    }
 }
