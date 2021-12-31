@@ -48,4 +48,17 @@ public class VacancyService {
                 .map(Applicant::getPerson)
                 .collect(Collectors.toList());
     }
+
+    @POST
+    @Path("{id}/applicants")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Person addApplicant(@PathParam("id") Long vacancyId,
+                              @QueryParam("personId") Long personId) {
+
+        Vacancy vacancy = vacancyRepository.findById(vacancyId);
+        Person person = personRepository.findById(personId);
+        applicantRepository.save(new Applicant(null, vacancy, person));
+
+        return person;
+    }
 }
