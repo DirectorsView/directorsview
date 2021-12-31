@@ -1,0 +1,30 @@
+POST http://localhost:8080/vacancy
+Content-Type: application/json
+
+{
+  "company": {
+    "id": 1
+  },
+  "deadline": "2021-12-31",
+  "id": 0,
+  "opened": true,
+  "project": {
+    "id": 0
+  },
+  "title": "string"
+}
+###
+
+GET http://localhost:8080/vacancy
+
+###
+
+GET http://localhost:8080/vacancy/1
+
+###
+
+GET http://localhost:8080/project/1/applicants
+
+###
+
+POST http://localhost:8080/project/1/applicants?personId=1
