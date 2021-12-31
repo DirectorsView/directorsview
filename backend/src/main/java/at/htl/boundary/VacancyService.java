@@ -6,9 +6,7 @@ import at.htl.entity.Project;
 import at.htl.entity.Vacancy;
 
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
@@ -25,5 +23,11 @@ public class VacancyService {
     @GET
     public List<Vacancy> getAll() {
         return vacancyRepository.listAll();
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Vacancy post(Vacancy vacancy) {
+        return vacancyRepository.save(vacancy);
     }
 }
