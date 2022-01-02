@@ -26,4 +26,10 @@ public class MessageService {
     public Message post(Message message) {
         return messageRepository.save(message);
     }
+
+    @GET
+    @Path("{id}")
+    public Message getOne(@PathParam("id") Long id) {
+        return messageRepository.findById(id);
+    }
 }
