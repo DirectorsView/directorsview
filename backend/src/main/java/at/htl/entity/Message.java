@@ -78,4 +78,15 @@ public class Message extends PanacheEntityBase {
     public void setTime(Timestamp time) {
         this.time = time;
     }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "id=" + id +
+                ", destination=" + destination +
+                ", source=" + source +
+                ", content='" + content + '\'' +
+                ", time=" + time +
+                '}';
+    }
 }
