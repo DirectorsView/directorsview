@@ -27,4 +27,17 @@ public class Message extends PanacheEntityBase {
 
     @Column(name = "MES_TIME")
     private Timestamp time;
+
+    public Message() {
+    }
+
+    public Message(Long id, Account destination, Account source, String content, Timestamp time) {
+        this.id = id;
+        this.destination = destination;
+        this.source = source;
+        this.content = content;
+        this.time = time;
+    }
+
+
 }
