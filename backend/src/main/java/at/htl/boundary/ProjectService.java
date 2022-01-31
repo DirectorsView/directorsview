@@ -3,9 +3,12 @@ package at.htl.boundary;
 import at.htl.control.PersonRepository;
 import at.htl.control.ProjectMemberRepository;
 import at.htl.control.ProjectRepository;
-import at.htl.entity.*;
+import at.htl.entity.Person;
+import at.htl.entity.Project;
+import at.htl.entity.ProjectMember;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
@@ -61,4 +64,32 @@ public class ProjectService {
 
         return person;
     }
+
+    @PUT
+    @Path("/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Transactional
+    public Project put(@PathParam("id") long id, Project project) {
+        Project originalProject = projectRepository.findById(id);
+
+        if (originalProject != null) {
+            originalProject.setName(project.getName());
+            originalProject.setDescription(project.getDescription());
+            originalProject.setStartTime(project.getStartTime());
+            originalProject.setEndTime(project.getEndTime());
+            originalProject.setCompany(project.getCompany());
+        }
+
+        return originalProject;
+    }
+
+    @DELETE
+    @Path("/{id}")
+    @Transactional
+    public Project delete(@PathParam("id") long id) {
+        Project project = projectRepository.findById(id);
+        project.delete("id = " + id);
+        return project;
+    }
+
 }
