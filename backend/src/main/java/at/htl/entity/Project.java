@@ -32,8 +32,7 @@ public class Project extends PanacheEntityBase {
     public Project() {
     }
 
-    public Project(Long id, String name, String description, LocalDate startTime, LocalDate endTime, Company company) {
-        this.id = id;
+    public Project(String name, String description, LocalDate startTime, LocalDate endTime, Company company) {
         this.name = name;
         this.description = description;
         this.startTime = startTime;
