@@ -6,6 +6,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "DV_COM")
 @Inheritance(strategy = InheritanceType.JOINED)
+@NamedQueries({
+        @NamedQuery(name = "Company.findProjects", query = "select p from Project p where p.company.id = :companyId")
+})
 public class Company extends Account {
     @Column(name = "COM_NAME")
     private String name;
