@@ -6,12 +6,14 @@ import at.htl.entity.Project;
 import at.htl.entity.ProjectMember;
 import io.quarkus.runtime.StartupEvent;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Date;
 
+@ApplicationScoped
 public class InitBean {
 
     @Inject
@@ -34,6 +36,8 @@ public class InitBean {
                 "wiesifilms.at",
                 "Wiesi Films",
                 "Wiesistreet 12");
+
+        company = companyRepository.save(company);
 
         Person person = new Person(
                 "password",
@@ -68,12 +72,12 @@ public class InitBean {
                 company
         );
 
-        companyRepository.save(company);
-        personRepository.save(person);
 
-        projectRepository.save(medientechnik);
-        projectRepository.save(medizintechnik);
-        projectRepository.save(informatik);
+        person = personRepository.save(person);
+
+        medientechnik = projectRepository.save(medientechnik);
+        medizintechnik = projectRepository.save(medizintechnik);
+        informatik = projectRepository.save(informatik);
 
         projectMemberRepository.save(new ProjectMember(null,medientechnik,person));
         projectMemberRepository.save(new ProjectMember(null,medizintechnik,person));
