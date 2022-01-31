@@ -6,6 +6,10 @@ import java.time.LocalDate;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "DV_PER")
+@NamedQueries({
+        @NamedQuery(name = "Person.findProjects",
+                query = "select pm.project from ProjectMember pm where pm.person.id = :personId")
+})
 public class Person extends Account {
     @Column(name = "PER_FIRSTNAME")
     private String firstName;
