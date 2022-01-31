@@ -3,9 +3,12 @@ package at.htl.boundary;
 import at.htl.control.ApplicantRepository;
 import at.htl.control.PersonRepository;
 import at.htl.control.VacancyRepository;
-import at.htl.entity.*;
+import at.htl.entity.Applicant;
+import at.htl.entity.Person;
+import at.htl.entity.Vacancy;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
@@ -53,7 +56,7 @@ public class VacancyService {
     @Path("{id}/applicants")
     @Consumes(MediaType.APPLICATION_JSON)
     public Person addApplicant(@PathParam("id") Long vacancyId,
-                              @QueryParam("personId") Long personId) {
+                               @QueryParam("personId") Long personId) {
 
         Vacancy vacancy = vacancyRepository.findById(vacancyId);
         Person person = personRepository.findById(personId);
@@ -61,4 +64,32 @@ public class VacancyService {
 
         return person;
     }
+
+    @PUT
+    @Path("/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Transactional
+    public Vacancy put(@PathParam("id") long id, Vacancy vacancy) {
+        Vacancy originalVacancy = vacancyRepository.findById(id);
+
+        if (originalVacancy != null) {
+            originalVacancy.setTitle(vacancy.getTitle());
+            originalVacancy.setDeadline(vacancy.getDeadline());
+            originalVacancy.setOpened(vacancy.getOpened());
+            originalVacancy.setCompany(vacancy.getCompany());
+            originalVacancy.setProject(vacancy.getProject());
+        }
+
+        return originalVacancy;
+    }
+
+    @DELETE
+    @Path("/{id}")
+    @Transactional
+    public Vacancy delete(@PathParam("id") long id) {
+        Vacancy vacancy = vacancyRepository.findById(id);
+        vacancy.delete("id = " + id);
+        return vacancy;
+    }
+
 }
