@@ -6,8 +6,10 @@ import at.htl.control.PersonRepository;
 import at.htl.entity.Company;
 import at.htl.entity.Employee;
 import at.htl.entity.Person;
+import at.htl.entity.Project;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
@@ -50,6 +52,12 @@ public class CompanyService {
                 .collect(Collectors.toList());
     }
 
+    @GET
+    @Path("/{id}/projects")
+    public List<Project> getProjects(@PathParam("id") Long id) {
+        return companyRepository.findProjects(id);
+    }
+
     @POST
     @Path("{id}/employees")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -62,5 +70,32 @@ public class CompanyService {
         employeeRepository.save(new Employee(null, person, company, isAdmin));
 
         return person;
+    }
+
+    @PUT
+    @Path("/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Transactional
+    public Company put(@PathParam("id") long id, Company company) {
+        Company originalCompany = companyRepository.findById(id);
+
+        if (originalCompany != null) {
+            originalCompany.setPassword(company.getPassword());
+            originalCompany.setEmail(company.getEmail());
+            originalCompany.setWebsite(company.getWebsite());
+            originalCompany.setName(company.getName());
+            originalCompany.setAddress(company.getAddress());
+        }
+
+        return originalCompany;
+    }
+
+    @DELETE
+    @Path("/{id}")
+    @Transactional
+    public Company delete(@PathParam("id") long id) {
+        Company company = companyRepository.findById(id);
+        company.delete("id = " + id);
+        return company;
     }
 }
