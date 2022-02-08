@@ -88,6 +88,7 @@ public class ProjectService {
     @Transactional
     public Project delete(@PathParam("id") long id) {
         Project project = projectRepository.findById(id);
+        projectMemberRepository.delete("project = " + id);
         project.delete("id = " + id);
         return project;
     }
