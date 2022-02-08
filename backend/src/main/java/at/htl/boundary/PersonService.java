@@ -3,11 +3,14 @@ package at.htl.boundary;
 import at.htl.control.PersonRepository;
 import at.htl.entity.Person;
 import at.htl.entity.Project;
+import org.hibernate.exception.ConstraintViolationException;
 
 import javax.inject.Inject;
+import javax.persistence.PersistenceException;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("/person")
@@ -23,8 +26,17 @@ public class PersonService {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Person post(Person person) {
-        return repository.save(person);
+    public Response post(Person person) {
+        try {
+            return Response
+                    .ok(repository.save(person))
+                    .build();
+        } catch (PersistenceException e) {
+            return Response
+                    .status(400)
+                    .entity("Email already used")
+                    .build();
+        }
     }
 
     @GET

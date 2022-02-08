@@ -7,11 +7,14 @@ import at.htl.entity.Company;
 import at.htl.entity.Employee;
 import at.htl.entity.Person;
 import at.htl.entity.Project;
+import org.hibernate.exception.ConstraintViolationException;
 
 import javax.inject.Inject;
+import javax.persistence.PersistenceException;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,8 +37,17 @@ public class CompanyService {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Company post(Company company) {
-        return companyRepository.save(company);
+    public Response post(Company company) {
+        try {
+            return Response
+                    .ok(companyRepository.save(company))
+                    .build();
+        } catch (PersistenceException e) {
+            return Response
+                    .status(400)
+                    .entity("Email already used")
+                    .build();
+        }
     }
 
     @GET

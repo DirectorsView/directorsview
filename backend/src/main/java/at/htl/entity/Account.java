@@ -15,7 +15,7 @@ public class Account extends PanacheEntityBase {
     @Column(name = "ACC_PASSWORD")
     private String password;
 
-    @Column(name = "ACC_EMAIL")
+    @Column(name = "ACC_EMAIL", unique = true)
     private String email;
 
     @Column(name = "ACC_WEBSITE")
