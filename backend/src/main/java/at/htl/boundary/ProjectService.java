@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,8 +41,19 @@ public class ProjectService {
 
     @GET
     @Path("{id}")
-    public Project getOne(@PathParam("id") Long id) {
-        return projectRepository.findById(id);
+    public Response getOne(@PathParam("id") Long id) {
+        Project project = projectRepository.findById(id);
+
+        if (project == null) {
+            return Response
+                    .status(Response.Status.NOT_FOUND)
+                    .entity("Project not found")
+                    .build();
+        } else {
+            return Response
+                    .ok(project)
+                    .build();
+        }
     }
 
     @GET
