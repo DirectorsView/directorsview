@@ -57,8 +57,20 @@ public class PersonService {
 
     @GET
     @Path("/{id}/projects")
-    public List<Project> getProjects(@PathParam("id") Long id) {
-        return repository.findProjects(id);
+    public Response getProjects(@PathParam("id") Long id) {
+
+        List<Project> projects = repository.findProjects(id);
+
+        if(projects.size() == 0) {
+            return Response
+                    .status(Response.Status.NOT_FOUND)
+                    .entity("No projects found")
+                    .build();
+        } else {
+            return Response
+                    .ok(projects)
+                    .build();
+        }
     }
 
     @PUT
