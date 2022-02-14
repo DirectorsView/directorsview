@@ -59,10 +59,21 @@ public class VacancyService {
 
     @GET
     @Path("{id}/applicants")
-    public List<Person> getApplicants(@PathParam("id") Long id) {
-        return applicantRepository.find("vacancy.id", id).stream()
+    public Response getApplicants(@PathParam("id") Long id) {
+        List<Person> applicants =  applicantRepository.find("vacancy.id", id).stream()
                 .map(Applicant::getPerson)
                 .collect(Collectors.toList());
+
+        if (applicants.size() == 0 ) {
+            return Response
+                    .status(Response.Status.NOT_FOUND)
+                    .entity("No applicants found")
+                    .build();
+        } else {
+            return Response
+                    .ok(applicants)
+                    .build();
+        }
     }
 
     @POST
