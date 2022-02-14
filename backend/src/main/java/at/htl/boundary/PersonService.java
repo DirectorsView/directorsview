@@ -3,7 +3,6 @@ package at.htl.boundary;
 import at.htl.control.PersonRepository;
 import at.htl.entity.Person;
 import at.htl.entity.Project;
-import org.hibernate.exception.ConstraintViolationException;
 
 import javax.inject.Inject;
 import javax.persistence.PersistenceException;
@@ -41,8 +40,19 @@ public class PersonService {
 
     @GET
     @Path("{id}")
-    public Person getOne(@PathParam("id") Long id) {
-        return repository.findById(id);
+    public Response getOne(@PathParam("id") Long id) {
+        Person person = repository.findById(id);
+
+        if (person == null) {
+            return Response
+                    .status(Response.Status.NOT_FOUND)
+                    .entity("Person not found")
+                    .build();
+        } else {
+            return Response
+                    .ok(person)
+                    .build();
+        }
     }
 
     @GET
