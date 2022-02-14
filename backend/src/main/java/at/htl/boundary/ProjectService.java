@@ -58,10 +58,21 @@ public class ProjectService {
 
     @GET
     @Path("{id}/members")
-    public List<Person> getEmployees(@PathParam("id") Long id) {
-        return projectMemberRepository.find("project.id", id).stream()
+    public Response getMembers(@PathParam("id") Long id) {
+        List<Person> members = projectMemberRepository.find("project.id", id).stream()
                 .map(ProjectMember::getPerson)
                 .collect(Collectors.toList());
+
+        if (members.size() == 0 ) {
+            return Response
+                    .status(Response.Status.NOT_FOUND)
+                    .entity("No project-members found")
+                    .build();
+        } else {
+            return Response
+                    .ok(members)
+                    .build();
+        }
     }
 
     @POST
