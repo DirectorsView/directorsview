@@ -88,8 +88,19 @@ public class CompanyService {
 
     @GET
     @Path("/{id}/projects")
-    public List<Project> getProjects(@PathParam("id") Long id) {
-        return companyRepository.findProjects(id);
+    public Response getProjects(@PathParam("id") Long id) {
+        List<Project> projects = companyRepository.findProjects(id);
+
+        if(projects.size() == 0) {
+            return Response
+                    .status(Response.Status.NOT_FOUND)
+                    .entity("No projects found")
+                    .build();
+        } else {
+            return Response
+                    .ok(projects)
+                    .build();
+        }
     }
 
     @POST
