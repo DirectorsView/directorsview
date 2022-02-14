@@ -70,10 +70,20 @@ public class CompanyService {
 
     @GET
     @Path("{id}/employees")
-    public List<Person> getEmployees(@PathParam("id") Long id) {
-        return employeeRepository.find("company.id", id).stream()
+    public Response getEmployees(@PathParam("id") Long id) {
+        List<Person> employees = employeeRepository.find("company.id", id).stream()
                 .map(Employee::getPerson)
                 .collect(Collectors.toList());
+        if (employees.size() == 0 ) {
+            return Response
+                    .status(Response.Status.NOT_FOUND)
+                    .entity("No employees found")
+                    .build();
+        } else {
+            return Response
+                    .ok(employees)
+                    .build();
+        }
     }
 
     @GET
