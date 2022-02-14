@@ -16,4 +16,12 @@ GET http://localhost:8080/person
 
 ###
 
-GET http://localhost:8080/person/1
+GET http://localhost:8080/person/7
+
+###
+
+GET http://localhost:8080/person/2/projects
+
+###
+
+GET http://localhost:8080/person/7/projects

@@ -6,10 +6,9 @@ Content-Type: application/json
     "id": 1
   },
   "deadline": "2021-12-31",
-  "id": 0,
   "opened": true,
   "project": {
-    "id": 0
+    "id": 1
   },
   "title": "string"
 }
@@ -19,12 +18,12 @@ GET http://localhost:8080/vacancy
 
 ###
 
-GET http://localhost:8080/vacancy/1
+GET http://localhost:8080/vacancy/60
 
 ###
 
-GET http://localhost:8080/project/1/applicants
+GET http://localhost:8080/vacancy/1/applicants
 
 ###
 
-POST http://localhost:8080/project/1/applicants?personId=1
+POST http://localhost:8080/vacancy/1/applicants?personId=1

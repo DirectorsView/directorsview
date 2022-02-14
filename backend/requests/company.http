@@ -14,11 +14,15 @@ GET http://localhost:8080/company
 
 ###
 
-GET http://localhost:8080/company/1
+GET http://localhost:8080/company/7
 
 ###
 
-GET http://localhost:8080/company/1/employees
+GET http://localhost:8080/company/7/employees
+
+###
+
+GET http://localhost:8080/company/7/projects
 
 ###
 
