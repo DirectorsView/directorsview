@@ -52,8 +52,20 @@ public class CompanyService {
 
     @GET
     @Path("{id}")
-    public Company getOne(@PathParam("id") Long id) {
-        return companyRepository.findById(id);
+    public Response getOne(@PathParam("id") Long id) {
+
+        Company company = companyRepository.findById(id);
+
+        if (company == null) {
+            return Response
+                    .status(Response.Status.NOT_FOUND)
+                    .entity("Company not found")
+                    .build();
+        } else {
+            return Response
+                    .ok(company)
+                    .build();
+        }
     }
 
     @GET
