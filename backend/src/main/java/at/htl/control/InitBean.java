@@ -86,24 +86,24 @@ public class InitBean {
         Project medientechnik = new Project(
                 "Imagevideo Medientechnik",
                 "Ein Werbefilm über den Medientechnikzweig der HTL Leonding",
-                LocalDate.of(2022, Month.JANUARY, 24),
-                LocalDate.of(2022, Month.FEBRUARY, 7),
+                LocalDate.of(2022, Month.MARCH, 14),
+                LocalDate.of(2022, Month.MARCH, 21),
                 company
         );
 
         Project medizintechnik = new Project(
                 "Imagevideo Medizintechnik",
                 "Ein Werbefilm über den Medizintechnikzweig der HTL Leonding",
-                LocalDate.of(2022, Month.JANUARY, 10),
-                LocalDate.of(2022, Month.JANUARY, 24),
+                LocalDate.of(2022, Month.MARCH, 21),
+                LocalDate.of(2022, Month.MARCH, 28),
                 company
         );
 
         Project informatik = new Project(
                 "Imagevideo Informatik",
                 "Ein Werbefilm über den Informatikzweig der HTL Leonding",
-                LocalDate.of(2022, Month.FEBRUARY, 7),
-                LocalDate.of(2022, Month.FEBRUARY, 21),
+                LocalDate.of(2022, Month.MARCH, 7),
+                LocalDate.of(2022, Month.MARCH, 14),
                 company
         );
 
