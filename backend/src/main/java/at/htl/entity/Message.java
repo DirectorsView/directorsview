@@ -5,6 +5,7 @@ import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "DV_MES")
@@ -23,7 +24,7 @@ public class Message extends PanacheEntityBase {
     private String content;
 
     @Column(name = "MES_TIME")
-    private LocalDate time;
+    private LocalDateTime time;
 
     @ManyToOne
     @JoinColumn(name = "MES_CHAT")
@@ -32,7 +33,7 @@ public class Message extends PanacheEntityBase {
     public Message() {
     }
 
-    public Message(Account source, String content, LocalDate time, Chat chat) {
+    public Message(Account source, String content, LocalDateTime time, Chat chat) {
         this.source = source;
         this.content = content;
         this.time = time;
@@ -63,11 +64,11 @@ public class Message extends PanacheEntityBase {
         this.content = content;
     }
 
-    public LocalDate getTime() {
+    public LocalDateTime getTime() {
         return time;
     }
 
-    public void setTime(LocalDate time) {
+    public void setTime(LocalDateTime time) {
         this.time = time;
     }
 

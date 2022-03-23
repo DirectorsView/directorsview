@@ -8,6 +8,7 @@ import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Month;
 
 @ApplicationScoped
@@ -31,6 +32,9 @@ public class InitBean {
 
     @Inject
     ChatRepository chatRepository;
+
+    @Inject
+    MessageRepository messageRepository;
 
     private void init(@Observes StartupEvent event) {
 
@@ -132,6 +136,42 @@ public class InitBean {
         employeeRepository.save(new Employee(null, person4, company, true));
         employeeRepository.save(new Employee(null, person5, company, false));
 
-        chatRepository.save(new Chat(person, person2, "abc"));
+        Chat chat1 = chatRepository.save(new Chat(person, person2, "abc"));
+        Chat chat2 = chatRepository.save(new Chat(company, person, "def"));
+
+        messageRepository.save(
+                new Message(
+                        person,
+                        "Hey! What's up?",
+                        LocalDateTime.of(2022, 3, 23, 21, 4),
+                        chat1));
+
+        messageRepository.save(
+                new Message(
+                        person2,
+                        "I'm good! How are you?",
+                        LocalDateTime.of(2022, 3, 23, 21, 5),
+                        chat1));
+
+        messageRepository.save(
+                new Message(
+                        company,
+                        "Hey I see you have applied for our job offer! Have you got any references?",
+                        LocalDateTime.of(2022, 3, 22, 18, 5),
+                        chat2));
+
+        messageRepository.save(
+                new Message(
+                        person,
+                        "Yeah just visit my website! You can see my portfolio there!",
+                        LocalDateTime.of(2022, 3, 22, 19, 37),
+                        chat2));
+
+        messageRepository.save(
+                new Message(
+                        company,
+                        "Wow that looks great! Can you call us tomorrow at 3pm so that we can talk about the details of the job?",
+                        LocalDateTime.of(2022, 3, 22, 18, 5),
+                        chat2));
     }
 }
