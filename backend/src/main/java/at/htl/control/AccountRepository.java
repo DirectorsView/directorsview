@@ -7,8 +7,8 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
 
 @ApplicationScoped
-@Transactional
 public class AccountRepository implements PanacheRepository<Account> {
+    @Transactional
     public Account save(Account account) {
         return getEntityManager().merge(account);
     }
