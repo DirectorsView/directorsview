@@ -1,18 +1,16 @@
 package at.htl.boundary;
 
 import at.htl.control.AccountRepository;
-import at.htl.control.PersonRepository;
+import at.htl.control.ChatRepository;
 import at.htl.entity.Account;
-import at.htl.entity.Person;
+import at.htl.entity.Chat;
 
 import javax.inject.Inject;
 import javax.json.JsonValue;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 @Path("/account")
 @Produces(MediaType.APPLICATION_JSON)
@@ -20,6 +18,9 @@ public class AccountService {
 
     @Inject
     AccountRepository accountRepository;
+
+    @Inject
+    ChatRepository chatRepository;
 
     /**
      * @param jsonValue {
@@ -40,7 +41,6 @@ public class AccountService {
                         .findFirst()
                         .orElse(null);
 
-
                 if (account == null) {
                     return Response.status(Response.Status.NOT_FOUND).build();
                 }
@@ -56,5 +56,22 @@ public class AccountService {
         }
 
         return Response.status(Response.Status.BAD_REQUEST).build();
+    }
+
+    @GET
+    @Path("{id}/chats")
+    public Response getChats(@PathParam("id") Long id) {
+
+        if (accountRepository.findById(id) == null) {
+            return Response
+                    .status(Response.Status.NOT_FOUND)
+                    .entity("Account not found")
+                    .build();
+        }
+        List<Chat> chat = chatRepository.find(String.format("account1 = %d or account2 = %d", id, id)).list();
+
+        return Response
+                .ok(chat)
+                .build();
     }
 }
