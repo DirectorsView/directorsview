@@ -4,6 +4,7 @@ import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "DV_MES")
@@ -15,10 +16,6 @@ public class Message extends PanacheEntityBase {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "MES_DESTINATION")
-    private Account destination;
-
-    @ManyToOne
     @JoinColumn(name = "MES_SOURCE")
     private Account source;
 
@@ -26,17 +23,20 @@ public class Message extends PanacheEntityBase {
     private String content;
 
     @Column(name = "MES_TIME")
-    private Timestamp time;
+    private LocalDate time;
+
+    @ManyToOne
+    @JoinColumn(name = "MES_CHAT")
+    private Chat chat;
 
     public Message() {
     }
 
-    public Message(Long id, Account destination, Account source, String content, Timestamp time) {
-        this.id = id;
-        this.destination = destination;
+    public Message(Account source, String content, LocalDate time, Chat chat) {
         this.source = source;
         this.content = content;
         this.time = time;
+        this.chat = chat;
     }
 
     public Long getId() {
@@ -45,14 +45,6 @@ public class Message extends PanacheEntityBase {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Account getDestination() {
-        return destination;
-    }
-
-    public void setDestination(Account destination) {
-        this.destination = destination;
     }
 
     public Account getSource() {
@@ -71,22 +63,30 @@ public class Message extends PanacheEntityBase {
         this.content = content;
     }
 
-    public Timestamp getTime() {
+    public LocalDate getTime() {
         return time;
     }
 
-    public void setTime(Timestamp time) {
+    public void setTime(LocalDate time) {
         this.time = time;
+    }
+
+    public Chat getChat() {
+        return chat;
+    }
+
+    public void setChat(Chat chat) {
+        this.chat = chat;
     }
 
     @Override
     public String toString() {
         return "Message{" +
                 "id=" + id +
-                ", destination=" + destination +
                 ", source=" + source +
                 ", content='" + content + '\'' +
                 ", time=" + time +
+                ", chat=" + chat +
                 '}';
     }
 }

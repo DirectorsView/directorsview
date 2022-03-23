@@ -1,0 +1,19 @@
+POST http://localhost:8080/chat/
+Content-Type: application/json
+
+{
+  "account1": {
+    "id": 2
+  },
+  "account2": {
+    "id": 3
+  },
+  "token": "aposidhfpisandf"
+}
+
+###
+
+GET http://localhost:8080/chat/1
+
+###
+

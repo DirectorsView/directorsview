@@ -41,10 +41,10 @@ public class MessageService {
         Message originalMessage = messageRepository.findById(id);
 
         if (originalMessage != null) {
-            originalMessage.setDestination(message.getDestination());
             originalMessage.setSource(message.getSource());
             originalMessage.setContent(message.getContent());
             originalMessage.setTime(message.getTime());
+            originalMessage.setChat(message.getChat());
         }
 
         return originalMessage;
