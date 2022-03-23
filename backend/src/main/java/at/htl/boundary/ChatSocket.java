@@ -17,6 +17,7 @@ import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -64,7 +65,7 @@ public class ChatSocket {
         sessions.get(token).forEach(session -> {
             Account account = accountRepository.findById(accountId);
             Chat chat = chatRepository.find("token", token).firstResult();
-            Message messageObject = messageRepository.save(new Message(account, message, LocalDate.now(), chat));
+            Message messageObject = messageRepository.save(new Message(account, message, LocalDateTime.now(), chat));
             session.getAsyncRemote().sendObject(messageObject);
         });
     }
