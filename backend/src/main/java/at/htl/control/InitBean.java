@@ -171,7 +171,7 @@ public class InitBean {
                 new Message(
                         company,
                         "Wow that looks great! Can you call us tomorrow at 3pm so that we can talk about the details of the job?",
-                        LocalDateTime.of(2022, 3, 22, 18, 5),
+                        LocalDateTime.of(2022, 3, 22, 19, 42),
                         chat2));
     }
 }
