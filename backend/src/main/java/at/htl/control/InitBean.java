@@ -6,10 +6,12 @@ import io.quarkus.runtime.StartupEvent;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.Month;
 
 @ApplicationScoped
+@Transactional
 public class InitBean {
 
     @Inject
@@ -26,6 +28,9 @@ public class InitBean {
 
     @Inject
     EmployeeRepository employeeRepository;
+
+    @Inject
+    ChatRepository chatRepository;
 
     private void init(@Observes StartupEvent event) {
 
@@ -126,5 +131,7 @@ public class InitBean {
         employeeRepository.save(new Employee(null, person3, company, false));
         employeeRepository.save(new Employee(null, person4, company, true));
         employeeRepository.save(new Employee(null, person5, company, false));
+
+        chatRepository.save(new Chat(person, person2, "abc"));
     }
 }
