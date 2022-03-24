@@ -38,6 +38,7 @@ public class InitBean {
 
     private void init(@Observes StartupEvent event) {
 
+        //region Accounts
         Company company = new Company(
                 "password",
                 "company@mail.com",
@@ -91,20 +92,22 @@ public class InitBean {
                 "Lustig",
                 LocalDate.of(2001, Month.JUNE, 24)
         );
+        //endregion
 
+        //region Projects
         Project medientechnik = new Project(
                 "Imagevideo Medientechnik",
                 "Ein Werbefilm über den Medientechnikzweig der HTL Leonding",
-                LocalDate.of(2022, Month.MARCH, 14),
                 LocalDate.of(2022, Month.MARCH, 21),
+                LocalDate.of(2022, Month.MARCH, 28),
                 company
         );
 
         Project medizintechnik = new Project(
                 "Imagevideo Medizintechnik",
                 "Ein Werbefilm über den Medizintechnikzweig der HTL Leonding",
-                LocalDate.of(2022, Month.MARCH, 21),
                 LocalDate.of(2022, Month.MARCH, 28),
+                LocalDate.of(2022, Month.MARCH, 31),
                 company
         );
 
@@ -115,6 +118,7 @@ public class InitBean {
                 LocalDate.of(2022, Month.MARCH, 14),
                 company
         );
+        //endregion
 
         person = personRepository.save(person);
         person2 = personRepository.save(person2);
@@ -138,7 +142,10 @@ public class InitBean {
 
         Chat chat1 = chatRepository.save(new Chat(person, person2, "abc"));
         Chat chat2 = chatRepository.save(new Chat(company, person, "def"));
+        Chat chat3 = chatRepository.save(new Chat(company, person2, "ghi"));
+        Chat chat4 = chatRepository.save(new Chat(company, person3, "jkl"));
 
+        //region Chat1
         messageRepository.save(
                 new Message(
                         person,
@@ -152,7 +159,9 @@ public class InitBean {
                         "I'm good! How are you?",
                         LocalDateTime.of(2022, 3, 23, 21, 5),
                         chat1));
+        //endregion
 
+        //region Chat2
         messageRepository.save(
                 new Message(
                         company,
@@ -173,5 +182,62 @@ public class InitBean {
                         "Wow that looks great! Can you call us tomorrow at 3pm so that we can talk about the details of the job?",
                         LocalDateTime.of(2022, 3, 22, 19, 42),
                         chat2));
+        //endregion
+
+        //region Chat 3
+        messageRepository.save(
+                new Message(
+                        company,
+                        "Hey I see you have applied for our job offer! Have you got any references?",
+                        LocalDateTime.of(2022, 3, 17, 13, 13),
+                        chat3));
+
+        messageRepository.save(
+                new Message(
+                        person2,
+                        "Yes! I will email you my portfolio!",
+                        LocalDateTime.of(2022, 3, 17, 14, 13),
+                        chat3));
+
+        messageRepository.save(
+                new Message(
+                        person2,
+                        "Thank you very much! We will contact you!",
+                        LocalDateTime.of(2022, 3, 17, 15, 13),
+                        chat3));
+        //endregion
+
+        //region Chat 4
+        messageRepository.save(
+                new Message(
+                        company,
+                        "Dear Mr Scholl, unfortunately, we cannot offer you a position at the moment that fits your profile and meets your expectations.",
+                        LocalDateTime.of(2022, 3, 2, 15, 13),
+                        chat4));
+        messageRepository.save(
+                new Message(
+                        company,
+                        "However, we would like to include you in our talent pool and get back to you.",
+                        LocalDateTime.of(2022, 3, 2, 15, 14),
+                        chat4));
+        messageRepository.save(
+                new Message(
+                        company,
+                        "If we should create a position in the future that better suits your profile.",
+                        LocalDateTime.of(2022, 3, 2, 15, 15),
+                        chat4));
+        messageRepository.save(
+                new Message(
+                        company,
+                        "Please get in touch with us if you agree to this.",
+                        LocalDateTime.of(2022, 3, 2, 15, 16),
+                        chat4));
+        messageRepository.save(
+                new Message(
+                        person3,
+                        "Yes please do that",
+                        LocalDateTime.of(2022, 3, 2, 16, 17),
+                        chat4));
+        //endregion
     }
 }
