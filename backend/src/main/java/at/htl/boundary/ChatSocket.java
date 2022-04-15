@@ -70,10 +70,11 @@ public class ChatSocket {
         objectMapper.registerModule(new JavaTimeModule());
 
         sessions.get(token).forEach(session -> {
-            Account account = accountRepository.findById(accountId);
-            Chat chat = chatRepository.find("token", token).firstResult();
-            Message messageObject = messageRepository.save(new Message(account, message, LocalDateTime.now(), chat));
-            session.getAsyncRemote().sendObject(messageObject);
+            try {
+                session.getAsyncRemote().sendObject(objectMapper.writeValueAsString(messageObject));
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
         });
     }
 }
