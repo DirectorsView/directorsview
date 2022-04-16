@@ -1,15 +1,20 @@
 package at.htl.control;
 
 import at.htl.entity.*;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import io.quarkus.runtime.StartupEvent;
+import net.bytebuddy.asm.Advice;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.time.temporal.TemporalAdjuster;
+import java.time.temporal.TemporalAdjusters;
 
 @ApplicationScoped
 @Transactional
@@ -37,6 +42,12 @@ public class InitBean {
     MessageRepository messageRepository;
 
     private void init(@Observes StartupEvent event) {
+
+        LocalDate thisWeek = LocalDate.now().with(TemporalAdjusters.previous(DayOfWeek.MONDAY));
+        LocalDate lastWeek = thisWeek.with(TemporalAdjusters.previous(DayOfWeek.MONDAY));
+        LocalDate lastLastWeek = lastWeek.with(TemporalAdjusters.previous(DayOfWeek.MONDAY));
+        LocalDate nextWeek = thisWeek.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
+        LocalDate nextNextWeek = nextWeek.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
 
         //region Accounts
         Company company = new Company(
@@ -95,27 +106,28 @@ public class InitBean {
         //endregion
 
         //region Projects
+
         Project medientechnik = new Project(
                 "Imagevideo Medientechnik",
                 "Ein Werbefilm über den Medientechnikzweig der HTL Leonding",
-                LocalDate.of(2022, Month.MARCH, 21),
-                LocalDate.of(2022, Month.MARCH, 28),
+                lastWeek,
+                thisWeek,
                 company
         );
 
         Project medizintechnik = new Project(
                 "Imagevideo Medizintechnik",
                 "Ein Werbefilm über den Medizintechnikzweig der HTL Leonding",
-                LocalDate.of(2022, Month.MARCH, 28),
-                LocalDate.of(2022, Month.MARCH, 31),
+                thisWeek,
+                nextWeek,
                 company
         );
 
         Project informatik = new Project(
                 "Imagevideo Informatik",
                 "Ein Werbefilm über den Informatikzweig der HTL Leonding",
-                LocalDate.of(2022, Month.MARCH, 7),
-                LocalDate.of(2022, Month.MARCH, 14),
+                nextWeek,
+                nextNextWeek,
                 company
         );
         //endregion
@@ -239,5 +251,6 @@ public class InitBean {
                         LocalDateTime.of(2022, 3, 2, 16, 17),
                         chat4));
         //endregion
+
     }
 }
