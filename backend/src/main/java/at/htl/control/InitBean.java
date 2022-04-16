@@ -41,6 +41,9 @@ public class InitBean {
     @Inject
     MessageRepository messageRepository;
 
+    @Inject
+    VacancyRepository vacancyRepository;
+
     private void init(@Observes StartupEvent event) {
 
         LocalDate thisWeek = LocalDate.now().with(TemporalAdjusters.previous(DayOfWeek.MONDAY));
@@ -57,7 +60,15 @@ public class InitBean {
                 "Wiesi Films",
                 "Wiesistreet 12");
 
+        Company company2 = new Company(
+                "password",
+                "doorfilms@mail.com",
+                "doorfilms.at",
+                "Doorfilms",
+                "Doorstreet 12");
+
         company = companyRepository.save(company);
+        company2 = companyRepository.save(company2);
 
         Person person = new Person(
                 "password",
@@ -130,6 +141,16 @@ public class InitBean {
                 nextNextWeek,
                 company
         );
+
+        Project project1 = new Project(
+                "Krieg der Sterne",
+                "Der junge Luke Skywalker lebt auf der Farm seines Onkels auf dem Wüstenplaneten Tatooine." +
+                " Eines Tages findet er in einem Roboter eine geheime Botschaft." +
+                " Er macht sich auf die Suche nach dem eigentlichen Empfänger der Botschaft",
+                nextWeek,
+                nextNextWeek,
+                company2
+        );
         //endregion
 
         person = personRepository.save(person);
@@ -141,10 +162,51 @@ public class InitBean {
         medientechnik = projectRepository.save(medientechnik);
         medizintechnik = projectRepository.save(medizintechnik);
         informatik = projectRepository.save(informatik);
+        project1 = projectRepository.save(project1);
+
 
         projectMemberRepository.save(new ProjectMember(null, medientechnik, person));
         projectMemberRepository.save(new ProjectMember(null, medizintechnik, person));
         projectMemberRepository.save(new ProjectMember(null, informatik, person));
+
+        //region Vacancy
+        Vacancy focusPuller = new Vacancy(
+                "Focus Puller",
+                nextWeek,
+                true,
+                company,
+                informatik
+        );
+
+        Vacancy assistant = new Vacancy(
+                "Assistant",
+                nextNextWeek,
+                true,
+                company,
+                informatik
+        );
+
+        Vacancy cinematographer = new Vacancy(
+                "Cinematographer",
+                nextWeek,
+                true,
+                company2,
+                project1
+        );
+
+        Vacancy clapperOperator = new Vacancy(
+                "Clapper Operator",
+                nextNextWeek,
+                true,
+                company2,
+                project1
+        );
+        //endregion
+
+        focusPuller = vacancyRepository.save(focusPuller);
+        assistant = vacancyRepository.save(assistant);
+        cinematographer = vacancyRepository.save(cinematographer);
+        clapperOperator = vacancyRepository.save(clapperOperator);
 
         employeeRepository.save(new Employee(null, person, company, true));
         employeeRepository.save(new Employee(null, person2, company, true));

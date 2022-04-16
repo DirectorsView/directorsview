@@ -34,8 +34,7 @@ public class Vacancy extends PanacheEntityBase {
     public Vacancy() {
     }
 
-    public Vacancy(Long id, String title, LocalDate deadline, Boolean opened, Company company, Project project) {
-        this.id = id;
+    public Vacancy(String title, LocalDate deadline, Boolean opened, Company company, Project project) {
         this.title = title;
         this.deadline = deadline;
         this.opened = opened;
