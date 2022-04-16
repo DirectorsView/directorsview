@@ -172,6 +172,7 @@ public class InitBean {
         //region Vacancy
         Vacancy focusPuller = new Vacancy(
                 "Focus Puller",
+                "We are searching for a motivated and experienced Focus Puller for our Project.",
                 nextWeek,
                 true,
                 company,
@@ -180,6 +181,7 @@ public class InitBean {
 
         Vacancy assistant = new Vacancy(
                 "Assistant",
+                "We are searching for a motivated and experienced Focus Puller for our Project.",
                 nextNextWeek,
                 true,
                 company,
@@ -188,6 +190,7 @@ public class InitBean {
 
         Vacancy cinematographer = new Vacancy(
                 "Cinematographer",
+                "We are searching for a motivated and experienced Focus Puller for our Project.",
                 nextWeek,
                 true,
                 company2,
@@ -196,6 +199,7 @@ public class InitBean {
 
         Vacancy clapperOperator = new Vacancy(
                 "Clapper Operator",
+                "We are searching for a motivated and experienced Focus Puller for our Project.",
                 nextNextWeek,
                 true,
                 company2,

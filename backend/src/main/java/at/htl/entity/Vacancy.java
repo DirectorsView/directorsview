@@ -17,6 +17,9 @@ public class Vacancy extends PanacheEntityBase {
     @Column(name = "VAC_TITLE")
     private String title;
 
+    @Column(name = "VAC_DESCRIPTION")
+    private String description;
+
     @Column(name = "VAC_DEADLINE")
     private LocalDate deadline;
 
@@ -34,12 +37,21 @@ public class Vacancy extends PanacheEntityBase {
     public Vacancy() {
     }
 
-    public Vacancy(String title, LocalDate deadline, Boolean opened, Company company, Project project) {
+    public Vacancy(String title, String description, LocalDate deadline, Boolean opened, Company company, Project project) {
         this.title = title;
         this.deadline = deadline;
+        this.description = description;
         this.opened = opened;
         this.company = company;
         this.project = project;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Long getId() {
