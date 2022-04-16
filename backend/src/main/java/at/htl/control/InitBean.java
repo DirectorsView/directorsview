@@ -205,12 +205,53 @@ public class InitBean {
                 company2,
                 project1
         );
+
+        Vacancy vacancy1 = new Vacancy(
+                "Content Creator",
+                "We are searching for a motivated and experienced Content Creator for our Company",
+                nextWeek,
+                true,
+                company,
+                null
+        );
+
+        Vacancy vacancy2 = new Vacancy(
+                "Filmmaker",
+                "We are searching for a motivated and experienced Filmmaker for our Company",
+                nextNextWeek,
+                true,
+                company,
+                null
+        );
+
+        Vacancy vacancy3 = new Vacancy(
+                "Multimedia Agent",
+                "We are searching for a motivated and experienced Multimedia Agent for our Company",
+                nextNextWeek,
+                true,
+                company2,
+                null
+        );
+
+        Vacancy vacancy4 = new Vacancy(
+                "Sound Engineer",
+                "We are searching for a motivated and experienced Sound Engineer for our Company",
+                nextWeek,
+                true,
+                company2,
+                null
+        );
         //endregion
 
         focusPuller = vacancyRepository.save(focusPuller);
         assistant = vacancyRepository.save(assistant);
         cinematographer = vacancyRepository.save(cinematographer);
         clapperOperator = vacancyRepository.save(clapperOperator);
+
+        vacancy1 = vacancyRepository.save(vacancy1);
+        vacancy2 = vacancyRepository.save(vacancy2);
+        vacancy3 = vacancyRepository.save(vacancy3);
+        vacancy4 = vacancyRepository.save(vacancy4);
 
         employeeRepository.save(new Employee(null, person, company, true));
         employeeRepository.save(new Employee(null, person2, company, true));
