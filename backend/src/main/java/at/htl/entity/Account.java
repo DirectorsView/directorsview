@@ -3,6 +3,7 @@ package at.htl.entity;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 import javax.persistence.*;
+import javax.validation.Constraint;
 
 @Entity
 @Table(name = "DV_ACC")
